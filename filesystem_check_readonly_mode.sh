@@ -7,7 +7,7 @@ listeMount=`df -PTlk $excludefs | sed -e 1d | awk '{print $7}'`
 hostname=`hostname`
 
 for m in $listeMount; do
-    echo "Check of $m"
+#    echo "Check of $m"
     tmpFile=`mktemp -p "$m" 2>&1`
     rc=$?
     if [[ $rc -ne 0 ]]; then
