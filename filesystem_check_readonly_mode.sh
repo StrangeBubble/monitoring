@@ -11,13 +11,12 @@ for m in $listeMount; do
     tmpFile=`mktemp -p "$m" 2>&1`
     rc=$?
     if [[ $rc -ne 0 ]]; then
-        echo "  $hostname : ERROR : $tmpFile"
+        echo "  $hostname ; ERROR ; $tmpFile has an error"
         test -f "$tmpFile" && rm -f "$tmpFile"
     else
-        echo "  $hostname : INFO : filesystem $m not in read only mode"
+        echo "  $hostname ; INFO ; filesystem $m not in read only mode"
         rm -f "$tmpFile"
     fi
 done
 
 exit 0
-
