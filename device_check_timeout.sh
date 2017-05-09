@@ -4,12 +4,12 @@
 
 hostname=`hostname`
 
-find /sys/class/scsi_generic/*/device/timeout -exec grep -H . '{}' \; | tr ':' ' ' |\
+find /sys/block/*/device/timeout -exec grep -H . '{}' \; | tr ':' ' ' |\
     while read dev timeout; do
-        if [[ $timeout -ge 180 ]]; then
-            echo "  $hostname ; INFO ; device ; $dev ; timeout ; $timeout"
+        if [[ $timeout -ge 60 ]]; then
+            echo "  $hostname ; INFO ; device $dev ; timeout = $timeout"
         else
-            echo "  $hostname ; ERROR ; device ; $dev ; timeout ; $timeout"
+            echo "  $hostname ; ERROR ; device $dev ; timeout = $timeout"
         fi
     done
 
