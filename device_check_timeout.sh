@@ -3,8 +3,9 @@
 # vim: :set ts=8 et sw=4 sts=4
 
 hostname=`hostname`
+exclude_dev='sr'
 
-find /sys/block/*/device/timeout -exec grep -H . '{}' \; | tr ':' ' ' |\
+find /sys/block/*/device/timeout -exec grep -H . '{}' \; | egrep -v $exclude_dev | tr ':' ' ' |\
     while read dev timeout; do
         if [[ $timeout -ge 60 ]]; then
             echo "  $hostname ; INFO ; device $dev ; timeout = $timeout"
