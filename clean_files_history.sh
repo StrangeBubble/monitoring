@@ -12,13 +12,13 @@ MAJOR=${VERSION%.*}
 MINOR=${VERSION#*.}
 
 # RH6 only
-if [[ $MAJOR -eq 6 ]]; then
+if (( $MAJOR == 6 )); then
     /sbin/service rsyslog stop
     /sbin/service auditd stop
 fi
 
 # RH7 only
-if [[ $MAJOR -eq 7 ]]; then
+if (( $MAJOR == 7 )); then
     /bin/systemctl stop rsyslog.service
     /sbin/service auditd stop
     /bin/systemctl stop tuned.service
